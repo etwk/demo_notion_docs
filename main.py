@@ -33,7 +33,7 @@ def fetch_url(url: str):
 def processing_html(html: str):
     """Extract main content from html and convert to markdown"""
     
-    # Add a newline after each HTML tag, to lower the change markdownify missing line breaks 
+    # Add a newline after each HTML tag, to lower the chance markdownify missing line breaks 
     html = re.sub(r'(>)(<)', r'\1\n\2', html)
     soup = BeautifulSoup(html, "html.parser")
 
@@ -151,7 +151,7 @@ def scrapping_notion():
         except Exception as e:
             logger.error(f"Failed processing URL '{url}'")
 
-        time.sleep(1)  # Sleep between each fetch to reduce server stress
+        time.sleep(1)  # Sleep between each fetch to avoid overloading server
 
     logger.info(f"{len(chunks)} chunks in total")
     save_list_to_file(chunks)
